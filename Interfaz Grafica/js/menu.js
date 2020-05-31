@@ -2,19 +2,19 @@ window.onload = init;
 
 function init(){
     if(localStorage.getItem("token")){
-        document.querySelector(`.btn-success`).addEventListener('click', function() {
+        document.getElementById('agregar').addEventListener('click', function(){
             window.location.href = "addEmp.html";
         });
-        document.querySelector(`.btn-warning`).addEventListener('click', function() {
+        document.getElementById('modificar').addEventListener('click', function() {
             window.location.href = "modifyEmp.html";
         });
-        document.querySelector(`.btn-primary`).addEventListener('click', function() {
+        document.getElementById('eliminar').addEventListener('click', function() {
             window.location.href = "deleteEmp.html";
         });
-        document.querySelector(`.btn-info`).addEventListener('click', function() {
+        document.getElementById('buscar').addEventListener('click', function() {
             window.location.href = "searchEmp.html";
         });
-        document.querySelector(`.btn-danger`).addEventListener('click', function() {
+        document.getElementById('salir').addEventListener('click', function() {
             localStorage.removeItem("token");
             window.location.href = "LOGIN.html";
         });

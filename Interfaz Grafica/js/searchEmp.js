@@ -1,6 +1,5 @@
 window.onload = init;
 var headers = {};
-var url = "http://localhost:3000";
 
 function init(){
     if(localStorage.getItem("token")){
@@ -12,7 +11,6 @@ function init(){
         window.location.href = "LOGIN.html";
     }
 }
-
 function accesoAutorizado(){
     if(localStorage.getItem("token")){
         headers = {
@@ -26,13 +24,21 @@ function accesoAutorizado(){
         window.location.href = "LOGIN.html";
     }
 }
-
-function searchEmpleado(){
+function searchEmpleado() {
     var name = document.getElementById('input-name').value;
-    axios.get(url+"/empleadosDB/", headers
-    ).then(function(res) {
-        console.log(res)
+    console.log(name);
+
+    axios({
+        method: 'get',
+        url: 'http://localhost:3000/empleadosDB/searchEmp',
+        headers, 
+        data: {
+            emp_name: name,
+        }
+    }).then(function(res) {
+        console.log(res);
     }).catch(function(err) {
-        console.log(err)
+        console.log(err);
+        alert('Ocurrio un error');
     })
 }

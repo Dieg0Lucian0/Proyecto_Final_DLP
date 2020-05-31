@@ -16,7 +16,6 @@ dataBase.use(express.json());
 dataBase.use(express.urlencoded({ extended : true}));
 
 dataBase.get('/', indeX);
-
 dataBase.use("/admin", admin);
 dataBase.use(auth);
 dataBase.use('/empleadosDB', empleadosDB);

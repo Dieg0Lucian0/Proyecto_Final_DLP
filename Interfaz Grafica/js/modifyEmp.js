@@ -1,6 +1,5 @@
 window.onload = init;
 var headers = {};
-var url = "http://localhost:3000";
 
 function init(){
     if(localStorage.getItem("token")){
@@ -12,7 +11,6 @@ function init(){
         window.location.href = "LOGIN.html";
     }
 }
-
 function accesoAutorizado(){
     if(localStorage.getItem("token")){
         headers = {
@@ -26,13 +24,32 @@ function accesoAutorizado(){
         window.location.href = "LOGIN.html";
     }
 }
-
-function modifyEmpleado(){
+function modifyEmpleado() {
     var name = document.getElementById('input-name').value;
-    axios.get(url+"/empleadosDB/", headers
-    ).then(function(res) {
-        console.log(res)
+    var lastname = document.getElementById('input-lastname').value;
+    var phone = document.getElementById('input-phone').value;
+    var mail = document.getElementById('input-mail').value;
+    var direction = document.getElementById('input-direction').value;
+
+    console.log(name, lastname, phone, mail, direction);
+
+    axios({
+        method: 'put',
+        url: 'http://localhost:3000/empleadosDB/modifyEmp',
+        headers, 
+        data: {
+            emp_name: name,
+            emp_lastname: lastname, 
+            emp_phone: phone, 
+            emp_mail: mail, 
+            emp_direction: direction
+        }
+    }).then(function(res) {
+        console.log(res);
+        alert("Modificación exitosa");
+        window.location.href = "menu.html";
     }).catch(function(err) {
-        console.log(err)
+        console.log(err);
+        alert("Ocurrio un error");
     })
 }
