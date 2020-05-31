@@ -1,27 +1,29 @@
-const morgan = require('morgan');
 const express = require('express');
-const app = express();
+const morgan = require('morgan');
+const dataBase = express();
 
-const datos = require('./Rutas/datos');
-const usuario = require('./Rutas/usuario')
+const admin = require('./Routes/admin');
+const empleadosDB = require('./Routes/empleadosDB');
 
-const auth = require('./Middleware/auth')
-const notFound = require('./Middleware/notFound')
-const indeX = require('./Middleware/indeX')
-const cors = require('./Middleware/cors')
+const auth = require('./middleware/auth');
+const cors = require('./middleware/cors');
+const indeX = require('./middleware/indeX');
+const notFound = require('./middleware/notFound')
 
-app.use(cors);
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended : true }));
+dataBase.use(cors)
+dataBase.use(morgan('dev'));
+dataBase.use(express.json());
+dataBase.use(express.urlencoded({ extended : true}));
 
-app.get('/',indeX);
+dataBase.get('/', indeX);
 
-app.use("/usuario", usuario);
-app.use(auth);
-app.use("/datos", datos)
-app.use(notFound)
+dataBase.use("/admin", admin);
+dataBase.use(auth);
+dataBase.use('/empleadosDB', empleadosDB);
+dataBase.use(notFound);
 
-app.listen(process.env.PORT || 3000, () =>{
-    console.log("System call suceessful....")
+dataBase.listen(process.env.PORT || 3000, () => {
+    console.log("System call successful....");
 });
+
+

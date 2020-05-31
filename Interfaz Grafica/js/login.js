@@ -1,15 +1,7 @@
 window.onload = init;
 
 function init(){
-    if(!localStorage.getItem("token")){
-        document.querySelector(`.btn-secondary`).addEventListener('click', function() {
-            window.location.href = "signin.html"
-        });
-        document.querySelector(`.btn-primary`).addEventListener('click', login);
-    }
-    else{
-        window.location.href = "pokedex.html"
-    }
+    document.querySelector(`.btn-primary`).addEventListener('click', login);
 }
 
 function login(){
@@ -18,15 +10,16 @@ function login(){
 
     axios({
         method: 'post',
-        url: 'http://localhost:3000/user/login',
+        url: 'http://localhost:3000/admin/login',
         data: {
-            user_mail : mail,
-            user_password: passcode,
+            admin_mail : mail,
+            admin_password: passcode,
         }
     }).then(function(res){
+        console.log(res.data)
         if(res.data.code === 200){
             localStorage.setItem("token", res.data.message);
-            window.location.href = "pokedex.html"
+            window.location.href = "menu.html";
         }
         else{
             alert("Usuario y/o contraseña incorrectos");

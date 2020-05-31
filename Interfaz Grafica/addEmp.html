@@ -11,28 +11,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/addEmp.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="row mt-5">
             <div class="col-6 offset-3">
-                <h1>Inicia sesión</h1>
+                <h1>Añadir Empleado</h1>
             </div>
         </div>
         <div class="row align-items-center">
             <div class="col-6 offset-3">
                 <div class="form-group">
-                    <label for="input-mail">Correo electrónico</label>
-                    <input type="email" class="form-control" id="input-mail" placeholder="correo@dominio.ext">
-                    <small class="form-text text-muted">El correo con el que te registraste.</small>
+                    <label for="input-name">Nombre</label>
+                    <input type="name" class="form-control" id="input-name" placeholder="Diego">
                 </div>
                 <div class="form-group">
-                    <label for="input-password">Contraseña</label>
-                    <input type="password" class="form-control" id="input-password" placeholder="***********">
+                    <label for="input-lastname">Apellidos</label>
+                    <input type="lastname" class="form-control" id="input-lastname" placeholder="Luciano Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="input-phone">Teléfono</label>
+                    <input type="phone" class="form-control" id="input-phone" placeholder="1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="input-mail">Correo electrónico</label>
+                    <input type="mail" class="form-control" id="input-mail" placeholder="correo@dominio.ext">
+                </div>
+                <div class="form-group">
+                    <label for="input-direction">Dirección</label>
+                    <input type="direction" class="form-control" id="input-direction" placeholder="123 N Main St Fairmount">
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary">Entrar</button>
+                    <button class="btn btn-primary">Aceptar</button>
+                    <button class="btn btn-secondary">Cancelar</button>
                 </div>
             </div>
         </div>
