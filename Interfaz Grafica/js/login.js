@@ -23,6 +23,7 @@ function login(){
         }
         else{
             alert("Usuario y/o contraseña incorrectos");
+            window.location.href = "LOGIN.html";
         }
     }).catch(function(err){
         console.log(err);

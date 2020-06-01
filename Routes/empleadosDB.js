@@ -13,6 +13,7 @@ empDB.post('/addEmp', async (req, res, next) => {
         let query = "INSERT INTO empleados(emp_name, emp_lastname, emp_phone, emp_mail, emp_direction)";
         query += `  VALUES ('${emp_name}', '${emp_lastname}', ${emp_phone}, '${emp_direction}')`;
         const rows = await db.query(query);
+        console.log(rows);
         if(rows.affectedRows == 1){
             return res.status(201).json({code:200, message: "Empleado agregado correctamente"});
         }
@@ -23,10 +24,9 @@ empDB.post('/addEmp', async (req, res, next) => {
 
 empDB.put('/modifyEmp', async (req, res, next) => {
     const {emp_name, emp_lastname, emp_phone, emp_mail, emp_direction} = req.body
-    const rows = await db.query(query);
-
     if(emp_name && emp_lastname && emp_phone && emp_mail && emp_direction){
         let query = `UPDATE empleados SET emp_name='${emp_name}', emp_lastname='${emp_lastname}', emp_phone=${emp_phone}, emp_mail='${emp_mail}', emp_direction='${emp_direction}' WHERE emp_name='${req.params.name}';`;
+        const rows = await db.query(query);
         if(rows.affectedRows == 1){
             return res.status(200).json({code:200, message: "Datos de empleado modificados correctamente"});
         }

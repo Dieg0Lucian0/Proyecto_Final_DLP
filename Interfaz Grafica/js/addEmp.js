@@ -1,8 +1,9 @@
 window.onload = init;
 var headers = {};
+var token = localStorage.getItem("token")
 
 function init(){
-    if(localStorage.getItem("token")){
+    if(token){
         document.querySelector(`.btn-primary`).addEventListener('click', accesoAutorizado);
         document.querySelector(`.btn-secondary`).addEventListener('click', function(){
             window.location.href = "menu.html";
@@ -12,17 +13,12 @@ function init(){
     }
 }
 function accesoAutorizado(){
-    if(localStorage.getItem("token")){
-        headers = {
-            headers: {
-                'Authorization': 'bearer ' + localStorage.getItem("token")
-            }
+    headers = {
+        headers: {
+            'Authorization': 'bearer ' + token
         }
-        addEmpleado();
     }
-    else{
-        window.location.href = "LOGIN.html";
-    }
+    addEmpleado();
 }
 function addEmpleado() {
     var name = document.getElementById('input-name').value;
@@ -31,12 +27,10 @@ function addEmpleado() {
     var mail = document.getElementById('input-mail').value;
     var direction = document.getElementById('input-direction').value;
 
-    console.log(name, lastname, phone, mail, direction);
-
     axios({
-        method: 'GET',
-        url: 'http://localhost:3000/empleadosDB/addEmp',
-        headers, 
+        headers: headers,
+        method: 'get',
+        url: 'http://localhost:3000/empleadosDB/allEmp',
         data: {
             emp_name: name,
             emp_lastname: lastname, 
