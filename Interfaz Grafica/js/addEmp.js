@@ -1,9 +1,8 @@
 window.onload = init;
 var headers = {};
-var token = localStorage.getItem("token")
 
 function init(){
-    if(token){
+    if(localStorage.getItem("token")){
         document.querySelector(`.btn-primary`).addEventListener('click', accesoAutorizado);
         document.querySelector(`.btn-secondary`).addEventListener('click', function(){
             window.location.href = "menu.html";
@@ -15,7 +14,7 @@ function init(){
 function accesoAutorizado(){
     headers = {
         headers: {
-            'Authorization': 'bearer ' + token
+            'Authorization': 'bearer ' + localStorage.getItem("token")
         }
     }
     addEmpleado();
@@ -28,9 +27,9 @@ function addEmpleado() {
     var direction = document.getElementById('input-direction').value;
 
     axios({
-        headers: headers,
         method: 'get',
-        url: 'http://localhost:3000/empleadosDB/allEmp',
+        url: 'http://localhost:3000/empleadosDB/addEmp',
+        headers,
         data: {
             emp_name: name,
             emp_lastname: lastname, 

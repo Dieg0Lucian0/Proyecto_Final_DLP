@@ -1,7 +1,12 @@
 window.onload = init;
 
 function init(){
-    document.querySelector(`.btn-primary`).addEventListener('click', login);
+    if(!localStorage.getItem("token")){
+        document.querySelector(`.btn-primary`).addEventListener('click', login);
+    }
+    else{
+        window.location.href = "menu.html"
+    }
 }
 
 function login(){
@@ -16,14 +21,12 @@ function login(){
             admin_password: passcode,
         }
     }).then(function(res){
-        console.log(res.data)
         if(res.data.code === 200){
             localStorage.setItem("token", res.data.message);
-            window.location.href = "menu.html";
+            window.location.href = "menu.html"
         }
         else{
             alert("Usuario y/o contraseña incorrectos");
-            window.location.href = "LOGIN.html";
         }
     }).catch(function(err){
         console.log(err);
