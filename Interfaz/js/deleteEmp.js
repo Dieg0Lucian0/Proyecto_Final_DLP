@@ -1,5 +1,6 @@
 window.onload = init;
 var headers = {};
+var url = "http://localhost:3000";
 
 function init(){
     if(localStorage.getItem("token")){
@@ -12,32 +13,27 @@ function init(){
     }
 }
 function accesoAutorizado(){
-    if(localStorage.getItem("token")){
-        headers = {
-            headers: {
-                'Authorization': 'bearer ' + localStorage.getItem("token")
-            }
+    headers = {
+        headers: {
+            'Authorization': 'bearer ' + localStorage.getItem("token")
         }
-        searchEmpleado();
     }
-    else{
-        window.location.href = "LOGIN.html";
-    }
+    
+    deleteEmpleado();
 }
-function searchEmpleado() {
-    var name = document.getElementById('input-name').value;
-    console.log(name);
 
-    axios({
-        method: 'get',
-        url: 'http://localhost:3000/empleadosDB/searchEmp',
-        headers, 
+function deleteEmpleado(){
+    var name = document.getElementById('input-name').value;
+    data = {
         data: {
-            emp_name: name,
+            emp_name: name
         }
-    }).then(function(res) {
+    }
+    axios.delete(url+"/empleadosDB/deleteEmp",data, headers)
+    .then(function(res){
         console.log(res);
-    }).catch(function(err) {
+        alert('Empleado dado de baja correctamente')
+    }).catch(function(err){
         console.log(err);
         alert('Ocurrio un error');
     })

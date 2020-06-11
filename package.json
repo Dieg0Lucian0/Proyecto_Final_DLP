@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Dieg0Lucian0/Proyecto_Final_DLP#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
